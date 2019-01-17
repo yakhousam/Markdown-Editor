@@ -1,14 +1,142 @@
+html,
 body {
-  margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.grid-container {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, max-content) minmax(0, 1fr);
+  grid-template-rows: 60px 1fr minmax(0, max-content);
+  grid-column-gap: 5px;
+  box-sizing: border-box;
+  background: #089de3;
+
+}
+
+#header {
+  color: #fff;
+  grid-column: span 2;
+  background: #089de3;
+  padding-left: 10px;
+}
+#header h1{
+  font-size: 24px;
+}
+
+#footer {
+  grid-column: span 2;
+  background: #089de3;
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
+}
+#footer a{
+  text-decoration: none;
+  color: #fff;
+}
+#footer a:hover{
+  text-decoration: underline;
+}
+
+#editor-container,
+#previewer-container {
+  display: grid;
+  grid-template-rows: 35px 1fr;
+}
+
+.toolbar {
+  background: #79cef6;
+  color: black;
+  height: 100%;
+  padding-left: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-resize{
+  border: none;
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+
+}
+.btn-resize:hover{
+  transform: scale(1.01);
+  cursor: pointer;
+}
+
+
+.btn-resize::-moz-focus-inner {
+  border: 0;
+}
+
+
+
+#editor,
+#preview {
+  width: 100%;
+  height: 100%;
+  background: #fafafa;
+  color: black;
+  box-sizing: border-box;
+  margin: 0;
+  border: none;
+}
+
+#editor {
+  width: 600px;
+  padding-left: 5px;
+}
+
+
+.animate-editor-previewer-full-size {
+  animation-name: editor-previewer-full-size;
+  animation-duration: 0s;
+  animation-fill-mode: forwards;
+  display: grid;
+  grid-template-rows: 35px, 1fr;
+  visibility: visible;
+}
+.animate-editor-previewer-full-size #editor {
+  width: 100 !important;
+  height: 100vh !important;
+  resize: none;
+  padding: 5px 20px;
+}
+.animation-is-running-hide-main-grid{
+    visibility: hidden;
+   display: block;
+}
+
+@keyframes editor-previewer-full-size {
+  to {    
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .grid-container {
+    padding: 0;
+    grid-template-columns: 100vw;
+    grid-template-rows: 60px minmax(250px, 1fr) minmax(250px, 1fr) minmax(0, max-content); 
+  }
+  #header,
+  #footer {
+    grid-column: span 1;
+   
+  }
+  #editor{
+      width: 100% !important;
+      height: 100% !important;
+  }
+ 
 }
